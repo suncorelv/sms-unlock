@@ -1,0 +1,20 @@
+{
+    "name": "suncorelv/sms-unlock",
+    "description": "Suncore.lv SMS Unlock Laravel 4 package",
+    "authors": [
+        {
+            "name": "Viktors Ņikiforovs",
+            "email": "viktors@suncore.lv"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "illuminate/support": "~4"
+    },
+    "autoload": {
+        "psr-0": {
+            "Suncorelv\\SmsUnlock": "src/"
+        }
+    },
+    "minimum-stability": "stable"
+}
