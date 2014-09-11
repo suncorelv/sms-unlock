@@ -28,13 +28,13 @@ composer update
 )
 ```
 
-# Publish package configuration files
+#### Publish package configuration files
 
 ```
 php artisan config:publish suncorelv/sms-unlock
 ```
 
-# Don't forget to configure package
+#### Don't forget to configure package
 ```
 app/config/packages/suncorelv/sms-unlock - there should be tow files (client.php and debug.php)
 ```
