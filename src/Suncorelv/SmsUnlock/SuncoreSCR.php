@@ -5,6 +5,8 @@
 * Written by ViktorsN (viktors@suncore.lv)
 */
 
+use Config, Exception;
+
 class SuncoreSCR {
 
 	private $client, $debug;
@@ -13,8 +15,8 @@ class SuncoreSCR {
 	{
 		define( 'SCR_CODE', 1881 );
 		define( 'SCR_BASE', 'http://run.suncore.lv/');
-		$this->client = \Config::get('sms-unlock::client');
-		$this->debug  = \Config::get('sms-unlock::debug');
+		$this->client = Config::get('sms-unlock::client');
+		$this->debug  = Config::get('sms-unlock::debug');
 	}
 
 	/**
@@ -51,22 +53,30 @@ class SuncoreSCR {
 
 		// Debug
 		$clientIP = $_SERVER['REMOTE_ADDR'];
-		if( $this->debug['on'] && $this->debug['key'] === $key && in_array($clientIP,$this->debug['ip']) ) return 'OK';
+		if( $this->debug['on'] && $this->debug['key'] === $key && in_array($clientIP, $this->debug['ip']) ) return 'OK';
 
 		// Returns OK, PENDING, FAILED or APISERVER_ERROR, if there was connection error with Suncore API server
-		return $this->makeRequest($type, $key, $price) ?: 'APISERVER_ERROR';
+		return $this->makeRequest($type, $key, $price);
 	}
 
 	/**
-	* @param string $type
-	* @param $key int
-	* @param $price int
-	* @return bool|string
-	*/
+	 * @param string $type
+	 * @param int $key
+	 * @param int $price
+	 * @return string
+	 * @throws \Exception
+	 */
 	protected function makeRequest($type = 'sms', $key, $price)
 	{
-		$response = \File::getRemote( SCR_BASE . $type . '/unlock/?key=' . $key . '&client=' . $this->client['id'] . '&price=' . $price . '&apikey=' . $this->client['apikey'], FALSE, NULL, 0, 140);
-		if( ! in_array($response, ['OK', 'PENDING', 'FAILED']) ) return false;
+		$curl = curl_init();
+		curl_setopt($curl, CURLOPT_URL, SCR_BASE . $type . '/unlock/?key=' . $key . '&client=' . $this->client['id'] . '&price=' . $price . '&apikey=' . $this->client['apikey']);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_CONNECTTIMEOUT, 45);
+		$response = curl_exec($curl);
+
+		if(curl_error($curl) || !in_array($response, array('OK', 'PENDING', 'FAILED')))
+			throw new Exception('Suncore API server unavailable');
+
 		return $response;
 	}
 

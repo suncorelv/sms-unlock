@@ -1,6 +1,5 @@
 <?php namespace Suncorelv\SmsUnlock;
 
-use Illuminate\Foundation\AliasLoader;
 use Illuminate\Support\ServiceProvider;
 
 class SmsUnlockServiceProvider extends ServiceProvider {
@@ -27,7 +26,6 @@ class SmsUnlockServiceProvider extends ServiceProvider {
 	public function boot()
 	{
 		$this->package('suncorelv/sms-unlock');
-		AliasLoader::getInstance()->alias('SCR', 'Suncorelv\SmsUnlock\Facade');
 	}
 
 	/**
