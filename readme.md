@@ -6,13 +6,13 @@
 
 ```
 "require": {
-    "laravel/framework": "4.2.*"
-    ...
-    "suncorelv/sms-unlock" : "1.0"
+	"laravel/framework": "4.2.*"
+	...
+	"suncorelv/sms-unlock" : "1.0"
 },
 ```
 
-* Do composer depencies update
+* Do composer dependencies update
 
 ```
 composer update
@@ -22,9 +22,9 @@ composer update
 
 ```
 'providers' => array(
-    'Illuminate\Foundation\Providers\ArtisanServiceProvider',
-    ...
-    'Suncorelv\SmsUnlock\SmsUnlockServiceProvider',
+	'Illuminate\Foundation\Providers\ArtisanServiceProvider',
+	...
+	'Suncorelv\SmsUnlock\SmsUnlockServiceProvider',
 )
 ```
 
@@ -36,7 +36,7 @@ php artisan config:publish suncorelv/sms-unlock
 
 #### Don't forget to configure package
 ```
-app/config/packages/suncorelv/sms-unlock - there should be tow files (client.php and debug.php)
+app/config/packages/suncorelv/sms-unlock - there should be two files (client.php and debug.php)
 ```
 
-### Enjoy
+Enjoy

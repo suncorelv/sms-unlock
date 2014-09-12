@@ -10,7 +10,7 @@
  */
 
 return array(
-    'on'  => true,
-    'key' => 123456,
-    'ip'  => array('127.0.0.1')
+	'on'  => false,
+	'key' => 123456,
+	'ip'  => array('127.0.0.1')
 );

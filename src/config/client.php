@@ -1,15 +1,27 @@
 <?php
 
 /**
- * -------------------------------------
- * Client data                         |
- * -------------------------------------
- * id      :: your client id
- * apikey  :: your client API key
- * keyword :: SMS keyword (default: SCR)
- */
+* -------------------------------------
+* Client data                         |
+* -------------------------------------
+* id      :: your client id
+* apikey  :: your client API key
+* keyword :: SMS keyword (default: SCR)
+* prices  :: All possible price codes
+*/
 return array(
-    'id'      => 8,
-    'apikey'  => 'A1B2CD891HKP',
-    'keyword' => 'SCR'
+	'id'      => 8,
+	'apikey'  => 'A1B2CD891HKP',
+	'keyword' => 'SCR',
+
+	'prices' => array(
+		5,7,10,15,20,25,30,35,39,40,
+		45,49,50,55,59,60,69,75,79,85,
+		89,95,100,125,150,175,200,225,250,275,
+		300,310,315,320,325,330,335,340,345,350,
+		355,360,365,370,375,380,385,390,395,400,
+		405,410,415,420,425,430,435,440,445,450,
+		455,460,465,470,475,480,485,490,495,500
+	)
+
 );
